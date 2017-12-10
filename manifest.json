@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+
+  "name": "Defender against privacy attacks",
+  "description": "This extensions defends against various privacy attacks which happens while you browse on the internet.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons" : {
+    "64": "icon.png"
+  },
+  "background" : {
+    "scripts" : ["background.js"]
+  },
+  "chrome_url_overrides":{
+    "newtab"  : "newtab.html"
+  },
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["options.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "browsingData",
+    "contentSettings",
+    "<all_urls>"
+  ]
+}
