@@ -50,6 +50,7 @@ chrome.tabs.onRemoved.addListener(function(tabid, removed) {
   if( num_tabs == 0 ){
     // Erase all the browser data when num_tabs is 0
     erase();
+    alert("You are safe with Amrita Privacy Badger!")
   }
 })
 
