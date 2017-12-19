@@ -1,2 +1,2 @@
 # Privacy-Extension
-Browser Extension to tackle fingerpriting
+Browser Extension to tackle fingerprinting
