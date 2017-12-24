@@ -1,13 +1,13 @@
 // Intialize the num_tabs with tab length
 chrome.tabs.getAllInWindow(null, function (tabs) {
-    console.log("Initial tab count: " + tabs.length);
+    //console.log("Initial tab count: " + tabs.length);
     num_tabs = tabs.length;
 });
 
 // Update the num_tabs when tab is created
 chrome.tabs.onCreated.addListener(function (tab) {
     num_tabs++;
-    console.log("Tab created event caught. Open tabs #: " + num_tabs);
+    //console.log("Tab created event caught. Open tabs #: " + num_tabs);
 });
 
 // Block all cookies except session cookies 
@@ -46,7 +46,7 @@ chrome.windows.onRemoved.addListener(function () {
 chrome.tabs.onRemoved.addListener(function () {
     // Update the num_tabs
     num_tabs--;
-    console.log("Tab removed event caught. Open tabs #: " + num_tabs);
+    //console.log("Tab removed event caught. Open tabs #: " + num_tabs);
     if (num_tabs === 0) {
         // Erase all the browser data when num_tabs is 0
         erase();

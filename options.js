@@ -4,7 +4,38 @@ var platform = ['Android', 'Linux', 'null', 'iPhone', 'iPod', 'iPad', 'iPhone Si
 'FreeBSD', 'FreeBSD i386', 'FreeBSD amd64', 'Linux', 'Linux aarch64', 'Windows'];
 
 // List of Ad domains which needs to removed, more domains need to added
-var blacklist = ['securepubads.g.doubleclick.net', 'pagead2.googlesyndication.com'];
+var blacklist = new Array;
+
+//this will read file and call function to make the file content to array
+function loadXMLDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            blacklist = this.responseText;
+            localStorage['response'] = blacklist;
+        }
+    };
+    xhttp.open("GET", chrome.extension.getURL("hosts"), true);
+    xhttp.send();
+}
+
+//delay function
+function delay() {
+    // `delay` returns a promise
+    return new Promise(function(resolve, reject) {
+        // Only `delay` is able to resolve or reject the promise
+        setTimeout(function() {
+            resolve(42); // After 3 seconds, resolve the promise with value 42
+        }, 3000);
+    });
+}
+
+// splitting all text data into array "\n" is splitting data from each new line
+//and saving each new line as each element*
+function intoArray (lines) {
+    return lines.split('\n');
+}
+
 
 // Selecting a random platform
 var os =  platform[Math.floor(Math.random() * platform.length)];
@@ -21,10 +52,23 @@ script.parentNode.removeChild(script);
 
 // Remove third party ad scripts in blacklist list
 window.onload = function() {
-    var node = document.querySelector('script');
-    var parser = document.createElement('a');
-    parser.href = node.src;
-    if (blacklist.indexOf(parser.hostname) > -1) {
-        node.parentNode.removeChild(node);
+    loadXMLDoc();
+    blacklist = intoArray(localStorage['response']);
+    var node = document.querySelectorAll('script');
+    for(var i=0;i<node.length;i++){
+        var parser = document.createElement('a');
+        parser.href = node[i].src;
+        //console.log(parser.hostname);
+        //console.log(blacklist);
+        //console.log(blacklist);
+        if (blacklist.indexOf(parser.hostname) > -1) {
+            console.log(parser.hostname);
+            node[i].parentNode.removeChild(node[i]);
+        }
+    }
+    console.log("List of ads blocked!! : ");
+    node = document.querySelectorAll('script');
+    for(var i=0;i<node.length;i++){
+        console.log(node[i].src);
     }
 }
