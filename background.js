@@ -10,7 +10,7 @@ chrome.tabs.onCreated.addListener(function (tab) {
     //console.log("Tab created event caught. Open tabs #: " + num_tabs);
 });
 
-// Block all cookies except session cookies 
+// Block all cookies except session cookies
 chrome.runtime.onInstalled.addListener(function () {
     chrome.contentSettings.cookies.set({
         'primaryPattern': "<all_urls>",
@@ -58,3 +58,25 @@ chrome.tabs.onRemoved.addListener(function () {
 chrome.storage.sync.get("data", function (items) {
 
 });
+
+var requestFilter = {
+	urls: [
+		"<all_urls>"
+	]
+};
+
+chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+	var headers = details.requestHeaders;
+	if( !localStorage['user-agent'] ) {
+		return;
+	}
+	for(var i = 0, l = headers.length; i < l; ++i) {
+		if( headers[i].name == 'User-Agent' ) {
+			break;
+		}
+	}
+	if(i < headers.length) {
+		headers[i].value = localStorage['user-agent'];
+	}
+	return {requestHeaders: headers};
+}, requestFilter, ['requestHeaders','blocking']);

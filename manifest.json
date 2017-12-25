@@ -12,6 +12,7 @@
   "icons" : {
     "64": "icon.png"
   },
+  "background" : "background.html",
   "background" : {
     "scripts" : ["background.js"]
   },
@@ -31,7 +32,9 @@
     "tabs",
     "browsingData",
     "contentSettings",
-    "<all_urls>"
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking"
   ],
   "web_accessible_resources": [
     "hosts",
