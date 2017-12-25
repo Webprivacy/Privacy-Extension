@@ -14,7 +14,7 @@
   },
   "background" : {
     "scripts" : ["background.js"],
-    "page" : "background.html"
+    "page" : "background.html",
   },
   "chrome_url_overrides":{
     "newtab"  : "newtab.html"
