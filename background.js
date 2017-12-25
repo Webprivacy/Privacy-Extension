@@ -73,7 +73,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	}
 	for(var i = 0, l = headers.length; i < l; ++i) {
 		if( headers[i].name == 'User-Agent' ) {
-      headers[i].value = '>>> Your new user agent string here <<<'; //have to list out the different user agents. 
+      headers[i].value = '>>> user agent string here <<<'; //have to list out the different user agents. 
       console.log(headers[i].value);
 			break;
 		}
