@@ -67,16 +67,24 @@ var requestFilter = {
 
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	var headers = details.requestHeaders;
+  blockingResponse = {};
 	if( !localStorage['user-agent'] ) {
 		return;
 	}
 	for(var i = 0, l = headers.length; i < l; ++i) {
 		if( headers[i].name == 'User-Agent' ) {
+      headers[i].value = '>>> user agent string here <<<'; //have to list out the different user agents. 
+      console.log(headers[i].value);
 			break;
 		}
+    // If you want to modify other headers, this is the place to
+    // do it. Either remove the 'break;' statement and add in more
+    // conditionals or use a 'switch' statement on 'headers[i].name'
 	}
-	if(i < headers.length) {
-		headers[i].value = localStorage['user-agent'];
-	}
-	return {requestHeaders: headers};
-}, requestFilter, ['requestHeaders','blocking']);
+  blockingResponse.requestHeaders = headers;
+  return blockingResponse;
+	// if(i < headers.length) {
+	// 	headers[i].value = localStorage['user-agent'];
+	// }
+	// return {requestHeaders: headers};
+}, {urls: [ "<all_urls>" ]},['requestHeaders','blocking']);
