@@ -81,3 +81,13 @@ s.onload = function() {
     this.remove();
 };
 (document.head || document.documentElement).appendChild(s);
+
+
+// Prevent Canvas Fingerprinting
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('canvasing.js');
+s.onload = function() {
+    this.remove();
+};
+(document.head || document.documentElement).appendChild(s);
+
