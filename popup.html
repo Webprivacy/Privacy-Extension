@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Popup</title>
-    <style>
-      dt { white-space: nowrap }
-    </style>
-    <script src="js/jquery.min.js"></script>
-    <script src="popup.js"></script>
-  </head>
-  <body>
-    <form action="">
-      <input type="checkbox" id="cookie" value="cookie">Remove third party cookie<br>
-      <input type="checkbox" id="browserdata" value="browserdata">While closing browser remove browser data 
-    </form>
-  </body>
+<head>
+  <title>Popup</title>
+  <style>
+    .slidecontainer {
+      width: 100%;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 15px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+  </style>
+  <script src="js/jquery.min.js"></script>
+  <script src="popup.js"></script>
+</head>
+<body>
+<h1>Select Security Level!!</h1>
+<div class="slidecontainer">
+<input type="range" min="0" max="100" value="50" class="slider" id="myRange" step="50">
+<p>Value: <span id="demo"></span></p>
+</div>
+</body>
 </html>

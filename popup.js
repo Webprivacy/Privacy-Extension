@@ -15,3 +15,21 @@ $(document).ready(function() {
     });
 });
 
+window.onload = function() {
+    // Slider Js
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = "Medium Security!";
+
+    slider.oninput = function () {
+        if(this.value<50) {
+            output.innerHTML = "Low Security!";
+        }
+        else if(this.value == 50){
+            output.innerHTML = "Medium Security!";
+        }
+        else{
+            output.innerHTML = "High Security!";
+        }
+    }
+}
