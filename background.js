@@ -65,6 +65,7 @@ var requestFilter = {
 	]
 };
 
+// Change User agent
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	var headers = details.requestHeaders;
   blockingResponse = {};
@@ -88,3 +89,8 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	// }
 	// return {requestHeaders: headers};
 }, {urls: [ "<all_urls>" ]},['requestHeaders','blocking']);
+
+// Remove WebRTC leakage
+chrome.privacy.network.webRTCIPHandlingPolicy.set({
+    value: 'default_public_interface_only'
+});
