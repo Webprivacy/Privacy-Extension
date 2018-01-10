@@ -43,6 +43,7 @@
     "hosts",
     "script.js",
     "canvasing.js",
+    "battery.js",
     "popup.html"
   ]
 }

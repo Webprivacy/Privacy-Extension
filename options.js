@@ -90,3 +90,20 @@ s.onload = function() {
     this.remove();
 };
 (document.head || document.documentElement).appendChild(s);
+
+// Prevent Battery API fingerprinting
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('battery.js');
+s.onload = function() {
+    this.remove();
+};
+(document.head || document.documentElement).appendChild(s);
+
+// Reducing the time latency of perfomance.now()
+// Prevention for sideChannel Attacks
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('time.js');
+s.onload = function() {
+    this.remove();
+};
+(document.head || document.documentElement).appendChild(s);
