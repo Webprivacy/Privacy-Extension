@@ -1,3 +1,5 @@
+var level;
+
 // Intialize the num_tabs with tab length
 chrome.tabs.getAllInWindow(null, function (tabs) {
     //console.log("Initial tab count: " + tabs.length);
@@ -10,31 +12,61 @@ chrome.tabs.onCreated.addListener(function (tab) {
     //console.log("Tab created event caught. Open tabs #: " + num_tabs);
 });
 
-// Block all cookies except session cookies
-chrome.runtime.onInstalled.addListener(function () {
-    chrome.contentSettings.cookies.set({
-        'primaryPattern': "<all_urls>",
-        'setting': 'session_only'
-    })
+// Get the content when there is change in level
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.greeting == "low")
+            sendResponse({
+                msg: "goodbye!"
+            });
+
+        // Intializing the level of privacy needed.
+        level = parseInt(request.greeting);
+    });
+
+// Receiving the storage using the message API
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    for (key in changes) {
+        var storageChange = changes[key];
+        console.log('Storage key "%s" in namespace "%s" changed. ' +
+            'Old value was "%s", new value is "%s".',
+            key,
+            namespace,
+            storageChange.oldValue,
+            storageChange.newValue);
+        level = storageChange.newValue;
+    }
 });
+
+if(level>=50) {
+    // Block all cookies except session cookies
+    chrome.runtime.onInstalled.addListener(function () {
+        chrome.contentSettings.cookies.set({
+            'primaryPattern': "<all_urls>",
+            'setting': 'session_only'
+        })
+    });
+}
 
 // Remove all the browsing data
 function erase() {
-    chrome.browsingData.remove({}, {
-        "appcache": true,
-        "cache": true,
-        "downloads": true,
-        "cookies": true,
-        "fileSystems": true,
-        "formData": true,
-        "history": true,
-        "indexedDB": true,
-        "localStorage": true,
-        "serverBoundCertificates": true,
-        "pluginData": true,
-        "passwords": true,
-        "webSQL": true
-    })
+    if(level > 50) {
+        chrome.browsingData.remove({}, {
+            "appcache": true,
+            "cache": true,
+            "downloads": true,
+            "cookies": true,
+            "fileSystems": true,
+            "formData": true,
+            "history": true,
+            "indexedDB": true,
+            "localStorage": true,
+            "serverBoundCertificates": true,
+            "pluginData": true,
+            "passwords": true,
+            "webSQL": true
+        })
+    }
 }
 
 // Detect browser window close event
@@ -68,7 +100,7 @@ var requestFilter = {
 // Change User agent
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	var headers = details.requestHeaders;
-  blockingResponse = {};
+    blockingResponse = {};
 	if( !localStorage['user-agent'] ) {
 		return;
 	}
@@ -82,13 +114,14 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
     // do it. Either remove the 'break;' statement and add in more
     // conditionals or use a 'switch' statement on 'headers[i].name'
 	}
-  blockingResponse.requestHeaders = headers;
-  return blockingResponse;
+    blockingResponse.requestHeaders = headers;
+    return blockingResponse;
 	// if(i < headers.length) {
 	// 	headers[i].value = localStorage['user-agent'];
 	// }
 	// return {requestHeaders: headers};
 }, {urls: [ "<all_urls>" ]},['requestHeaders','blocking']);
+
 
 // Remove WebRTC leakage
 chrome.privacy.network.webRTCIPHandlingPolicy.set({
