@@ -37,8 +37,10 @@ $(document).ready(function(){
             console.log('Level Changed!');
         });
         localStorage.level = document.getElementById('myRange').value;
+        console.log(localStorage.level);
+        domUpdation(localStorage.level);
     });
-    document.getElementById('myRange').value = level;
+    document.getElementById('myRange').value = localStorage.level;
 });
 
 chrome.storage.sync.get(['lev'], function(items) {
@@ -47,21 +49,22 @@ chrome.storage.sync.get(['lev'], function(items) {
     }
 });
 
-window.onload = function() {
-    // Slider Js
+function domUpdation(level) {
     var slider = document.getElementById("myRange");
     var output = document.getElementById("demo");
     output.innerHTML = "Medium Privacy!";
-
-    slider.oninput = function () {
-        if(this.value<50) {
-            output.innerHTML = "Low Privacy!";
-        }
-        else if(this.value == 50){
-            output.innerHTML = "Medium Privacy!";
-        }
-        else{
-            output.innerHTML = "High Privacy!";
-        }
+    if (level < 50) {
+        output.innerHTML = "Low Privacy!";
     }
+    else if(level == 50) {
+        output.innerHTML = "Medium Privacy!";
+    }
+    else {
+        output.innerHTML = "High Privacy!";
+    }
+}
+
+window.onload = function() {
+    // Slider Js
+    domUpdation(localStorage.level);
 }

@@ -14,6 +14,7 @@
     "newtab"  : "newtab.html"
   },
   "browser_action": {
+    "default_icon" : "icon.png",
     "popup" : "options.html"
   },
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
@@ -37,7 +38,9 @@
     "contentSettings",
     "<all_urls>",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "notifications",
+    "proxy"
   ],
   "web_accessible_resources": [
     "hosts",

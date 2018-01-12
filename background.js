@@ -22,7 +22,19 @@ chrome.runtime.onMessage.addListener(
 
         // Intializing the level of privacy needed.
         level = parseInt(request.greeting);
+    }
+);
+
+// Disable flash for protecting against privacy
+function blockFlash(block) {
+    chrome.contentSettings.plugins.set({
+        primaryPattern: '<all_urls>',
+        resourceIdentifier: {
+            id: 'adobe-flash-player'
+        },
+        setting: block ? 'block' : 'allow'
     });
+}
 
 // Receiving the storage using the message API
 chrome.storage.onChanged.addListener(function(changes, namespace) {
@@ -38,15 +50,14 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     }
 });
 
-if(level>=50) {
-    // Block all cookies except session cookies
-    chrome.runtime.onInstalled.addListener(function () {
-        chrome.contentSettings.cookies.set({
-            'primaryPattern': "<all_urls>",
-            'setting': 'session_only'
-        })
-    });
-}
+// Block all cookies except session cookies
+chrome.runtime.onInstalled.addListener(function () {
+    chrome.contentSettings.cookies.set({
+        'primaryPattern': "<all_urls>",
+        'setting': 'session_only'
+    })
+});
+
 
 // Remove all the browsing data
 function erase() {
@@ -122,8 +133,114 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 	// return {requestHeaders: headers};
 }, {urls: [ "<all_urls>" ]},['requestHeaders','blocking']);
 
-
 // Remove WebRTC leakage
 chrome.privacy.network.webRTCIPHandlingPolicy.set({
     value: 'default_public_interface_only'
 });
+
+/*
+// Set Tor proxy
+var url = "https://check.torproject.org"
+    , proxied = false;
+
+// Normal Mode
+var system_network = { mode: 'system' };
+
+// Tor network mode
+var tor_network = {
+    mode: 'fixed_servers',
+    rules: { singleProxy: { scheme: 'socks5', host: '127.0.0.1', port: 9050 } }
+};
+
+// Check tor connection status when coming online
+window.addEventListener('online', function() {
+    checkProxy(onProxyCheck);
+});
+
+// Check browser action icon when going offline
+window.addEventListener('offline', function() {
+    onConnectionChange(false);
+});
+
+// watch for proxy errors
+// Update browser action icon and proxy settings on proxy error
+chrome.proxy.onProxyError.addListener(function(details) {
+    console.error('Proxy Error: ' + details.error);
+
+    // disable proxy
+    toggleTorProxy(onConnectionChange);
+    console.log(
+        'Proxy Error There was a problem connecting to your local tor proxy.  ' +
+        'Make sure tor is running on localhost:9050.'
+    );
+});
+
+
+// Toggle tor proxy settings on browser action icon click
+chrome.browserAction.onClicked.addListener(function(tab) {
+    console.log('click');
+    toggleTorProxy(onConnectionChange);
+});
+
+
+// Toggle chrome proxy settings between system and tor
+function toggleTorProxy(cb) {
+    var config = proxied ? system_network : tor_network;
+    chrome.proxy.settings.set({ value: config, scope: 'regular' }, function() {
+        proxied = !proxied;
+
+        // update header processing
+        chrome.webRequest.onBeforeSendHeaders.removeListener(processHeaders);
+        if(proxied) {
+            // alter headers on outgoing requests
+            chrome.webRequest.onBeforeSendHeaders.addListener(
+                processHeaders,
+                { urls: ['<all_urls>'] },
+                ['blocking', 'requestHeaders']
+            );
+        }
+
+        cb(proxied);
+    });
+}
+
+// Check for a current tor connection using check.torproject.org
+function checkProxy(cb) {
+    var xhr = new XMLHttpRequest();
+    // don't wait too long
+    xhr.timeout = 5000;
+    xhr.onerror = cb;
+    xhr.ontimeout = cb;
+    xhr.onload = function(e) {
+        var resp = e.target.responseText;
+        cb(null, (resp && resp.indexOf('Sorry') === -1));
+    };
+    xhr.open("GET", url);
+    xhr.send();
+}
+
+
+// Handle proxy connection status check
+function onProxyCheck(err, isTor) {
+    if(err) {
+        console.warn('Failed to check tor status at ' + url);
+        return chrome.browserAction.setTitle({
+            title: 'Unable to check tor status at ' + url
+        });
+    }
+}
+
+// Function strip headers from outgoing requests
+function processHeaders(details) {
+    for(var i = 0, l = details.requestHeaders.length; i < l; i++) {
+        if(details.requestHeaders[i].name === 'Referer') {
+            details.requestHeaders.splice(i, 1);
+            break;
+        }
+    }
+    return { requestHeaders: details.requestHeaders };
+}
+
+// check proxy status on boot
+checkProxy(onProxyCheck);
+*/
