@@ -1,4 +1,4 @@
-(function() {
+/*(function() {
 	var elem_ids = ['device_default_button', 'device_list', 'current_ua_field',
 		'current_ua_field',
 		'add_device_button', 'restore_defaults_button'],
