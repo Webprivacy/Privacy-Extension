@@ -113,6 +113,7 @@ window.onload = function() {
     }
 }
 
+
 // Code for spoofing height and width is disabled
 var s = document.createElement('script');
 // TODO: add "script.js" to web_accessible_resources in manifest.json
@@ -123,6 +124,7 @@ s.onload = function() {
 (document.head || document.documentElement).appendChild(s);
 
 
+/*
 // Prevent Canvas Fingerprinting
 var s = document.createElement('script');
 s.src = chrome.extension.getURL('canvasing.js');
@@ -130,6 +132,7 @@ s.onload = function() {
     this.remove();
 };
 (document.head || document.documentElement).appendChild(s);
+*/
 
 // Prevent Battery API fingerprinting
 var s = document.createElement('script');
