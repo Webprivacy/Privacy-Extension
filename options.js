@@ -47,43 +47,43 @@ var codeToInject = 'Object.defineProperty(navigator,"platform", { \
 var nav;
 var lang = "en-US";
 codeToInject += 'Object.defineProperty(navigator,"userAgent", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appCodeName", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appName", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appVersion", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"cookieEnabled", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"deviceMemory", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"doNotTrack", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"mimeTypes", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"plugins", { \
-   get: function () { return "'+ nav +'"; }, \
+   get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"language", { \
-   get: function () { return "'+ lang +'"; }, \
+   get: function () { return '+ lang +'; }, \
    set: function (a) {} \
   });';
 var script = document.createElement('script');
