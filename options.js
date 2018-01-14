@@ -45,6 +45,44 @@ var codeToInject = 'Object.defineProperty(navigator,"platform", { \
   get: function () { return "'+ os +'"; }, \
   set: function (a) {} \
  });';
+
+var nav = NULL;
+codeToInject + = 'Object.defineProperty(navigator,"userAgent", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"appCodeName", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"appName", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"appVersion", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"cookieEnabled", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"deviceMemory", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"doNotTrack", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"mimeTypes", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject + = 'Object.defineProperty(navigator,"plugins", { \
+   get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
 var script = document.createElement('script');
 script.appendChild(document.createTextNode(codeToInject));
 (document.head || document.documentElement).appendChild(script);
