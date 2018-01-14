@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="399047be-71c6-415a-94cb-f25a8240d114" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/options.js" afterPath="$PROJECT_DIR$/options.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/canvasing.js" afterPath="$PROJECT_DIR$/canvasing.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="canvasing.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="canvasing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/canvasing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+            <state relative-caret-position="186">
+              <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -52,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="options.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="options.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/options.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="430">
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/hosts" />
         <option value="$PROJECT_DIR$/script.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
-        <option value="$PROJECT_DIR$/canvasing.js" />
         <option value="$PROJECT_DIR$/options.js" />
+        <option value="$PROJECT_DIR$/canvasing.js" />
       </list>
     </option>
   </component>
@@ -453,7 +453,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105324000" />
+    <option name="totallyTimeSpent" value="105813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1374" height="738" extended-state="6" />
@@ -841,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/canvasing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2592">
@@ -887,6 +879,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="85" column="35" lean-forward="false" selection-start-line="85" selection-start-column="35" selection-end-line="85" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvasing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding />
         </state>
       </provider>
