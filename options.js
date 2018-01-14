@@ -45,7 +45,6 @@ var codeToInject = 'Object.defineProperty(navigator,"platform", { \
  });';
 
 var nav;
-var lang = "en-US";
 codeToInject += 'Object.defineProperty(navigator,"userAgent", { \
    get: function () { return '+ nav +'; }, \
    set: function (a) {} \
