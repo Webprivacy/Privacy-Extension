@@ -50,6 +50,6 @@
     "time.js",
     "storage",
     "popup.html",
-    "xagentScript.js"
+    "xagent.js"
   ]
 }

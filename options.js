@@ -1,8 +1,3 @@
-// More to be added from  https://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today
-var platform = ['Android', 'Linux', 'null', 'iPhone', 'iPod', 'iPad', 'iPhone Simulator', 'iPod Simulator'
-, 'iPad Simulator', 'Macintosh' , 'MacIntel', 'MacPPC', 'Mac68K', 'Pike v7.6', 'Pike v7.8', 'BlackBerry',
-'FreeBSD', 'FreeBSD i386', 'FreeBSD amd64', 'Linux', 'Linux aarch64', 'Windows'];
-
 // List of Ad domains which needs to removed, more domains need to added
 var blacklist = new Array;
 
@@ -37,6 +32,11 @@ function intoArray (lines) {
 }
 
 
+
+// More to be added from  https://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today
+var platform = ['Android', 'Linux', 'null', 'iPhone', 'iPod', 'iPad', 'iPhone Simulator', 'iPod Simulator'
+    , 'iPad Simulator', 'Macintosh' , 'MacIntel', 'MacPPC', 'Mac68K', 'Pike v7.6', 'Pike v7.8', 'BlackBerry',
+    'FreeBSD', 'FreeBSD i386', 'FreeBSD amd64', 'Linux', 'Linux aarch64', 'Windows'];
 // Selecting a random platform
 var os =  platform[Math.floor(Math.random() * platform.length)];
 
