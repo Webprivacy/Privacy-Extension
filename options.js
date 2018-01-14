@@ -46,7 +46,7 @@ var codeToInject = 'Object.defineProperty(navigator,"platform", { \
   set: function (a) {} \
  });';
 
-var nav = NULL;
+var nav;
 codeToInject += 'Object.defineProperty(navigator,"userAgent", { \
    get: function () { return "'+ nav +'"; }, \
    set: function (a) {} \
