@@ -83,7 +83,7 @@ codeToInject += 'Object.defineProperty(navigator,"plugins", { \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"language", { \
-   get: function () { return '+ lang +'; }, \
+   get: function () { return "en-US"; }, \
    set: function (a) {} \
   });';
 var script = document.createElement('script');
