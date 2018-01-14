@@ -34,9 +34,7 @@ function intoArray (lines) {
 
 
 // More to be added from  https://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today
-var platform = ['Android', 'Linux', 'null', 'iPhone', 'iPod', 'iPad', 'iPhone Simulator', 'iPod Simulator'
-    , 'iPad Simulator', 'Macintosh' , 'MacIntel', 'MacPPC', 'Mac68K', 'Pike v7.6', 'Pike v7.8', 'BlackBerry',
-    'FreeBSD', 'FreeBSD i386', 'FreeBSD amd64', 'Linux', 'Linux aarch64', 'Windows'];
+var platform = ['win32'];
 // Selecting a random platform
 var os =  platform[Math.floor(Math.random() * platform.length)];
 
@@ -47,6 +45,7 @@ var codeToInject = 'Object.defineProperty(navigator,"platform", { \
  });';
 
 var nav;
+var lang = "en-US";
 codeToInject += 'Object.defineProperty(navigator,"userAgent", { \
    get: function () { return "'+ nav +'"; }, \
    set: function (a) {} \
@@ -81,6 +80,10 @@ codeToInject += 'Object.defineProperty(navigator,"mimeTypes", { \
   });';
 codeToInject += 'Object.defineProperty(navigator,"plugins", { \
    get: function () { return "'+ nav +'"; }, \
+   set: function (a) {} \
+  });';
+codeToInject += 'Object.defineProperty(navigator,"language", { \
+   get: function () { return "'+ lang +'"; }, \
    set: function (a) {} \
   });';
 var script = document.createElement('script');
