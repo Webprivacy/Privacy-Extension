@@ -40,17 +40,17 @@ var os =  platform[Math.floor(Math.random() * platform.length)];
 
 // Changing the navigator.platform
 var codeToInject = 'Object.defineProperty(navigator,"platform", { \
-  get: function () { return "'+ os +'"; }, \
+  get: function () { return "'+ os +'; }, \
   set: function (a) {} \
  });';
 
 var nav;
 codeToInject += 'Object.defineProperty(navigator,"userAgent", { \
-   get: function () { return '+ nav +'; }, \
+   get: function () { return "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appCodeName", { \
-   get: function () { return '+ nav +'; }, \
+   get: function () { return "Mozilla"; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appName", { \
