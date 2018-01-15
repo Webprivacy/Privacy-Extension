@@ -40,7 +40,7 @@ var os =  platform[Math.floor(Math.random() * platform.length)];
 
 // Changing the navigator.platform
 var codeToInject = 'Object.defineProperty(navigator,"platform", { \
-  get: function () { return "'+ platform +'; }, \
+  get: function () { return "Win32"; }, \
   set: function (a) {} \
  });';
 
