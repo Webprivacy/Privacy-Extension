@@ -36,7 +36,7 @@ function intoArray (lines) {
 // More to be added from  https://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today
 var platform = ['win32'];
 // Selecting a random platform
-var os =  platform[Math.floor(Math.random() * platform.length)];
+//var os =  platform[Math.floor(Math.random() * platform.length)];
 
 // Changing the navigator.platform
 var codeToInject = 'Object.defineProperty(navigator,"platform", { \
@@ -77,10 +77,10 @@ codeToInject += 'Object.defineProperty(navigator,"mimeTypes", { \
    get: function () { return '+ nav +'; }, \
    set: function (a) {} \
   });';
-codeToInject += 'Object.defineProperty(navigator,"plugins", { \
-   get: function () { return '+ nav +'; }, \
-   set: function (a) {} \
-  });';
+codeToInject += "Object.defineProperty(navigator, 'plugins', { \
+    get: function() { return {};},\
+    set: function (a) {} \
+  });";
 codeToInject += 'Object.defineProperty(navigator,"language", { \
    get: function () { return "en-US"; }, \
    set: function (a) {} \
@@ -88,7 +88,6 @@ codeToInject += 'Object.defineProperty(navigator,"language", { \
 var script = document.createElement('script');
 script.appendChild(document.createTextNode(codeToInject));
 (document.head || document.documentElement).appendChild(script);
-script.parentNode.removeChild(script);
 
 // Remove third party ad scripts in blacklist list
 window.onload = function() {
@@ -123,8 +122,6 @@ s.onload = function() {
 };
 (document.head || document.documentElement).appendChild(s);
 
-
-/*
 // Prevent Canvas Fingerprinting
 var s = document.createElement('script');
 s.src = chrome.extension.getURL('canvasing.js');
@@ -132,7 +129,6 @@ s.onload = function() {
     this.remove();
 };
 (document.head || document.documentElement).appendChild(s);
-*/
 
 // Prevent Battery API fingerprinting
 var s = document.createElement('script');
