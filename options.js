@@ -54,7 +54,7 @@ codeToInject += 'Object.defineProperty(navigator,"appCodeName", { \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appName", { \
-   get: function () { return '+ nav +'; }, \
+   get: function () { return "Netscape"; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appVersion", { \
