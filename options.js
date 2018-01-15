@@ -58,7 +58,7 @@ codeToInject += 'Object.defineProperty(navigator,"appName", { \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"appVersion", { \
-   get: function () { return '+ nav +'; }, \
+   get: function () { return "5.0 (Windows)"; }, \
    set: function (a) {} \
   });';
 codeToInject += 'Object.defineProperty(navigator,"cookieEnabled", { \
