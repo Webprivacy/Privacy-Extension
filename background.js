@@ -13,19 +13,6 @@ chrome.tabs.onCreated.addListener(function (tab) {
     //console.log("Tab created event caught. Open tabs #: " + num_tabs);
 });
 
-// Get the content when there is change in level
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if (request.greeting == "low")
-            sendResponse({
-                msg: "goodbye!"
-            });
-
-        // Intializing the level of privacy needed.
-        level = parseInt(request.greeting);
-    }
-);
-
 // Disable flash for protecting against privacy
 function blockFlash(block) {
     chrome.contentSettings.plugins.set({
@@ -51,7 +38,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
         // Send the level change to content script
         chrome.runtime.sendMessage({
-            level: localStorage.level  
+            level: localStorage.level
         });
 
         // Turn on the proxy only when the level is greater or equal to 50

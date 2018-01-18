@@ -11,7 +11,6 @@ document.createElement = function(x) {
     ret_canvas.orig_todataurl = ret_canvas.toDataURL;
     // Redefine function toDataURL to add noise
     ret_canvas.toDataURL = function() {
-        var randomID = Math.random().toString(10);
         var saved_style = ret_canvas.getContext('2d').fillStyle;
         var r = 255*Math.random()|0,
             g = 255*Math.random()|0,

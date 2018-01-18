@@ -28,11 +28,6 @@ chrome.proxy.onProxyError.addListener(function(details) {
 
   // disable proxy
   toggleTorProxy(onConnectionChange);
-  notify(
-    'Proxy Error',
-    'There was a problem connecting to your local tor proxy.  ' +
-    'Make sure tor is running on localhost:9050.'
-  );
 });
 
 // Toggle chrome proxy settings between system and tor
@@ -103,11 +98,6 @@ function processHeaders(details) {
   return { requestHeaders: details.requestHeaders };
 }
 
-function notify(title, message) {
-  webkitNotifications
-    .createNotification('icon16.png', title, message)
-    .show();
-}
 
 
 // check proxy status on boot
