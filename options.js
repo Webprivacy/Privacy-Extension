@@ -1,6 +1,13 @@
 // List of Ad domains which needs to removed, more domains need to added
 var blacklist = new Array;
 
+// Make the level change in content script
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse){
+       localStorage["level"] = request.level;
+    }
+);
+
 //this will read file and call function to make the file content to array
 function loadXMLDoc() {
     var xhttp = new XMLHttpRequest();

@@ -49,6 +49,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             storageChange.newValue);
         level = storageChange.newValue;
 
+        // Send the level change to content script
+        chrome.runtime.sendMessage({
+            level: localStorage.level  
+        });
+
         // Turn on the proxy only when the level is greater or equal to 50
         if(localStorage.level>=50 && (tor==false||typeof(tor)=="undefined")){
             toggleTorProxy(onConnectionChange);
@@ -72,7 +77,7 @@ chrome.runtime.onInstalled.addListener(function () {
 
 // Remove all the browsing data
 function erase() {
-    if(level > 50) {
+    if(level >= 50) {
         chrome.browsingData.remove({}, {
             "appcache": true,
             "cache": true,
@@ -138,7 +143,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
     return {requestHeaders: headers};
 }, requestFilter, ['requestHeaders','blocking']);
 
-// Remove WebRTC leakage
+// Remove WebRTC local and public IP leakage
 chrome.privacy.network.webRTCIPHandlingPolicy.set({
-    value: 'default_public_interface_only'
+    value: 'disable_non_proxied_udp'
 });

@@ -42,7 +42,6 @@ document.createElement = function(x) {
                 imagedata[i+1] = g +  (imagedata[i+1] * .99);
                 imagedata[i+2] = b +  (imagedata[i+2] * .99);
                 imagedata[i+3] = a +  (imagedata[i+3] * .99);
-                //imagedata[i] = 255;
             }
             return imagedata;
         }

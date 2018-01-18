@@ -11,7 +11,6 @@ navigator.getBattery = function () {
                 else if (name == "dischargingTime") return 0;
                 else return target[name];
             }
-
         });
 
         filtered.addEventListener = function (name, handler) {
