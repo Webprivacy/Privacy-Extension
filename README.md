@@ -16,4 +16,6 @@ Browser Extension to tackle fingerprinting attacks affecting the privacy of user
 To use this extension, enable developer mode in Chrome or Chromium and click on `Load Unpacked extension`, choose the cloned folder.
 
 ## ⚠️ WARNING ⚠️
-## Please note that this extension is still under testing phase
+Run `tor` via command line for better experience.
+
+Install `tor` in Linux via `sudo apt-get install tor` and in Mac, `brew install tor`.  
