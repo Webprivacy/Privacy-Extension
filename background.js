@@ -130,22 +130,3 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 chrome.privacy.network.webRTCIPHandlingPolicy.set({
     value: 'disable_non_proxied_udp'
 });
-
-/*
-// Create a Notification
-chrome.extension.onRequest.addListener(
-  function(request, sender, sendResponse) {
-var options = {
-    type: "basic",
-    title: "Someone is accessing your chrome canvas!!",
-    message: "Extension has added noise to the imagedata",
-    iconUrl: "icon16.png"
-}
-
-chrome.notifications.create(options, callback);
-
-function callback(){
-    console.log("Someone accessed the canvas!!");
-}
-});
-*/

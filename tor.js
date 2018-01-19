@@ -35,6 +35,22 @@ function toggleTorProxy(cb) {
   chrome.proxy.settings.set({ value: config, scope: 'regular' }, function() {
     proxied = !proxied;
 
+    if(proxied){
+    // Create a Notification
+        var options = {
+          type: "basic",
+          title: "You are in Tor network!!",
+          message: "Browsing may be slow, but tor is safe",
+          iconUrl: "icon16.png"
+        }
+
+      chrome.notifications.create(options, callback);
+
+      function callback(){
+        console.log("Someone accessed the canvas!!");
+      }
+    }
+
     // From example https://developer.chrome.com/extensions/webRequest
     // update header processing
     chrome.webRequest.onBeforeSendHeaders.removeListener(processHeaders);
