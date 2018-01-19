@@ -20,6 +20,17 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     }
 });
 
+
+// Code for spoofing height and width is disabled
+var s = document.createElement('script');
+// TODO: add "script.js" to web_accessible_resources in manifest.json
+s.src = chrome.extension.getURL('script.js');
+s.onload = function() {
+    this.remove();
+};
+(document.head || document.documentElement).appendChild(s);
+
+
 if(localStorage['level'] > 49){
   //this will read file and call function to make the file content to array
   function loadXMLDoc() {
@@ -106,6 +117,7 @@ if(localStorage['level'] > 49){
      get: function () { return "en-US"; }, \
      set: function (a) {} \
     });';
+
   var script = document.createElement('script');
   script.appendChild(document.createTextNode(codeToInject));
   (document.head || document.documentElement).appendChild(script);
@@ -132,16 +144,6 @@ if(localStorage['level'] > 49){
           console.log(node[i].src);
       }
   }
-
-
-  // Code for spoofing height and width is disabled
-  var s = document.createElement('script');
-  // TODO: add "script.js" to web_accessible_resources in manifest.json
-  s.src = chrome.extension.getURL('script.js');
-  s.onload = function() {
-      this.remove();
-  };
-  (document.head || document.documentElement).appendChild(s);
 
   // Prevent Canvas Fingerprinting
   var s = document.createElement('script');
