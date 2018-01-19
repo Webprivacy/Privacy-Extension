@@ -48,11 +48,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             storageChange.oldValue,
             storageChange.newValue);
         level = storageChange.newValue;
-
-        // Send the level change to content script
-        chrome.runtime.sendMessage({
-            level: localStorage.level  
-        });
+        localStorage.level = level;
 
         // Turn on the proxy only when the level is greater or equal to 50
         if(localStorage.level>=50 && (tor==false||typeof(tor)=="undefined")){
@@ -147,3 +143,19 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 chrome.privacy.network.webRTCIPHandlingPolicy.set({
     value: 'disable_non_proxied_udp'
 });
+
+// Create a Notification
+/*
+var options = {
+    type: "basic",
+    title: "Someone is accessing your chrome canvas!!",
+    message: "Extension has added noise to the imagedata",
+    iconUrl: "icon16.png"
+}
+
+chrome.notifications.create(options, callback);
+
+function callback(){
+    console.log("Someone accessed the canvas!!");
+}
+*/
