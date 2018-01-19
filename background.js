@@ -13,19 +13,6 @@ chrome.tabs.onCreated.addListener(function (tab) {
     //console.log("Tab created event caught. Open tabs #: " + num_tabs);
 });
 
-// Get the content when there is change in level
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if (request.greeting == "low")
-            sendResponse({
-                msg: "goodbye!"
-            });
-
-        // Intializing the level of privacy needed.
-        level = parseInt(request.greeting);
-    }
-);
-
 // Disable flash for protecting against privacy
 function blockFlash(block) {
     chrome.contentSettings.plugins.set({
@@ -144,8 +131,10 @@ chrome.privacy.network.webRTCIPHandlingPolicy.set({
     value: 'disable_non_proxied_udp'
 });
 
-// Create a Notification
 /*
+// Create a Notification
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
 var options = {
     type: "basic",
     title: "Someone is accessing your chrome canvas!!",
@@ -158,4 +147,5 @@ chrome.notifications.create(options, callback);
 function callback(){
     console.log("Someone accessed the canvas!!");
 }
+});
 */

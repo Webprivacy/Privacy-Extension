@@ -1,5 +1,4 @@
-var url = "https://check.torproject.org"
-  , proxied = false;
+var url = "https://check.torproject.org", proxied = false;
 
 // System default network setting
 var system_network = { mode: 'system' };
@@ -12,7 +11,7 @@ var tor_network = {
 
 // Check tor connection status when coming online
 window.addEventListener('online', function() {
-  checkProxy(onProxyCheck);
+  //checkProxy(onProxyCheck);
 });
 
 
@@ -28,11 +27,6 @@ chrome.proxy.onProxyError.addListener(function(details) {
 
   // disable proxy
   toggleTorProxy(onConnectionChange);
-  notify(
-    'Proxy Error',
-    'There was a problem connecting to your local tor proxy.  ' +
-    'Make sure tor is running on localhost:9050.'
-  );
 });
 
 // Toggle chrome proxy settings between system and tor
@@ -41,6 +35,7 @@ function toggleTorProxy(cb) {
   chrome.proxy.settings.set({ value: config, scope: 'regular' }, function() {
     proxied = !proxied;
 
+    // From example https://developer.chrome.com/extensions/webRequest
     // update header processing
     chrome.webRequest.onBeforeSendHeaders.removeListener(processHeaders);
     if(proxied) {
@@ -51,7 +46,6 @@ function toggleTorProxy(cb) {
         ['blocking', 'requestHeaders']
       );
     }
-
     cb(proxied);
   });
 }
@@ -66,32 +60,6 @@ function onConnectionChange(connected) {
   chrome.browserAction.setIcon({ path: { 38: '' + image } });
 }
 
-// Check for a current tor connection using check.torproject.org
-function checkProxy(cb) {
-  var xhr = new XMLHttpRequest();
-  // don't wait too long
-  xhr.timeout = 5000;
-  xhr.onerror = cb;
-  xhr.ontimeout = cb;
-  xhr.onload = function(e) {
-    var resp = e.target.responseText;
-    cb(null, (resp && resp.indexOf('Sorry') === -1));
-  };
-  xhr.open("GET", url);
-  xhr.send();
-}
-
-// Handle proxy connection status check
-function onProxyCheck(err, isTor) {
-  if(err) {
-    console.warn('Failed to check tor status at ' + url);
-    return chrome.browserAction.setTitle({
-      title: 'Unable to check tor status at ' + url
-    });
-  }
-  onConnectionChange(isTor);
-}
-
 // Function strip headers from outgoing requests
 function processHeaders(details) {
   for(var i = 0, l = details.requestHeaders.length; i < l; i++) {
@@ -102,13 +70,3 @@ function processHeaders(details) {
   }
   return { requestHeaders: details.requestHeaders };
 }
-
-function notify(title, message) {
-  webkitNotifications
-    .createNotification('icon16.png', title, message)
-    .show();
-}
-
-
-// check proxy status on boot
-checkProxy(onProxyCheck);

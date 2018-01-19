@@ -35,7 +35,6 @@ chrome.storage.sync.get(['lev'], function(items) {
 });
 
 function domUpdation(level) {
-    var slider = document.getElementById("myRange");
     var output = document.getElementById("demo");
     output.innerHTML = "Medium Privacy!";
     if (level < 50) {

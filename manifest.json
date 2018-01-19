@@ -39,8 +39,7 @@
     "webRequest",
     "webRequestBlocking",
     "notifications",
-    "proxy",
-    "https://check.torproject.org/"
+    "proxy"
   ],
   "web_accessible_resources": [
     "hosts",
