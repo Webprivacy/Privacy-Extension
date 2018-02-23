@@ -12,9 +12,9 @@ document.createElement = function(x) {
     // Redefine function toDataURL to add noise
     ret_canvas.toDataURL = function() {
         //var saved_style = ret_canvas.getContext('2d').fillStyle;
-        var r = 255*Math.random()|0,
-            g = 255*Math.random()|0,
-            b = 255*Math.random()|0
+        var r = 255*Math.random(),
+            g = 255*Math.random(),
+            b = 255*Math.random()
             a = .01;
         ret_canvas.getContext('2d').fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
         ret_canvas.getContext('2d').fillRect(0,0,ret_canvas.width,ret_canvas.height);
