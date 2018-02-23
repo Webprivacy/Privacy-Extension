@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Defender against privacy attacks",
+  "name": "BrowQue",
   "description": "This extensions defends against various privacy attacks which happens while you browse on the internet.",
   "version": "1.0",
   "icons" : {
